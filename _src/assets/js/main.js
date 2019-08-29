@@ -5,6 +5,8 @@ console.log('>> Ready :)');
 const startButton = document.querySelector('.start-btn');
 const allRadios = document.querySelectorAll('.form__input-radio');
 const allPokemonImages = document.querySelectorAll('.card-img');
+const gameCardList = document.querySelector('.section__game');
+
 
 //functions
 function handleStartButton() {
@@ -30,11 +32,35 @@ function handleStartButton() {
 
       for (let i=0; i<data.length; i++) {
         const dataObject = data[i];
-        const resultImage = dataObject.image;
-        allPokemonImages[i].src = resultImage;
 
+        const resultImageUrl = dataObject.image;
+        const resultPokemonName = dataObject.name;
+
+        createElementCards (resultImageUrl, resultPokemonName);
       }
     });
+}
+
+
+function createElementCards (frontCardUrl, frontCardName) {
+
+  const newCard = document.createElement('li');
+
+  const imgFrontCard = document.createElement('img');
+  imgFrontCard.classList.add('card-front-img');
+  imgFrontCard.src = frontCardUrl;
+  imgFrontCard.alt = frontCardName;
+
+  const imgBackCard = document.createElement('img');
+  imgBackCard.classList.add('card-back-img');
+  imgBackCard.src = 'https://via.placeholder.com/160x195/30d9c4/ffffff/?text=ADALAB';
+  imgBackCard.alt = 'Adalab Name';
+
+
+  newCard.appendChild(imgFrontCard);
+  newCard.appendChild(imgBackCard);
+
+  gameCardList.appendChild(newCard);
 }
 
 //listeners
