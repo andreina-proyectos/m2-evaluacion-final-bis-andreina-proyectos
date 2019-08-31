@@ -3,21 +3,30 @@ console.log('>> Ready :)');
 
 //variables
 const startButton = document.querySelector('.start-btn');
-const allInputRadios = document.querySelectorAll('.form__input-radio');
+const allInputRadios = document.querySelectorAll('.form__input-radio')
+;
 let gameCardsList = document.querySelector('.game__cards-list');
 
+if (localStorage.getItem('Favorite game value')) {
+  let lsRadioValue = localStorage.getItem('Favorite game value');
+  for (let i=0; i<allInputRadios.length; i++) {
+    if (allInputRadios[i].value === lsRadioValue) {
+      allInputRadios[i].checked = true;
+    }
+  }
+}
 
 //functions
-
-
 function handleStartButton () {
   gameCardsList.innerHTML = '';
+
   let radioSelectedValue;
   const endpoint = 'https://raw.githubusercontent.com/Adalab/cards-data/master/';
 
   for (let i=0; i<allInputRadios.length; i++) {
     if(allInputRadios[i].checked) {
       radioSelectedValue = allInputRadios[i].value;
+      localStorage.setItem('Favorite game value', radioSelectedValue);
     }
   }
 
@@ -74,9 +83,7 @@ function createElementCards (frontCardSrc, frontCardName) {
 function handleClickOnCard () {
   event.currentTarget.firstChild.classList.toggle('hidden');
   event.currentTarget.children[1].classList.toggle('hidden');
-
 }
 
 //listeners
-
 startButton.addEventListener('click', handleStartButton);
