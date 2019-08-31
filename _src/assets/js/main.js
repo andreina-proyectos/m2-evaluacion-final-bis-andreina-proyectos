@@ -85,6 +85,29 @@ function createElementCards (frontCardSrc, frontCardName) {
 function handleClickOnCard () {
   event.currentTarget.firstChild.classList.toggle('hidden');
   event.currentTarget.children[1].classList.toggle('hidden');
+
+  if (document.querySelector('.selected-card')) {
+    if (event.currentTarget.firstChild.alt === document.querySelector('.selected-card').alt) {
+      console.log('son lo mismo');
+
+    }
+    }
+  else {
+    event.currentTarget.firstChild.classList.add('selected-card');
+  }
+
+
+  // const arrFrontCards =  gameCardsList.querySelectorAll('.card__front-img');
+
+  // for(let i=0; i<arrFrontCards.length; i++) {
+  //   if(arrFrontCards[i].classList('show-card')) {
+
+  //   }
+  // }
+
+
+  //deberia hacer un bucle recorriendo el array de tarjetas. si eventcurrenttarget.name ===
+
 }
 
 //listeners
