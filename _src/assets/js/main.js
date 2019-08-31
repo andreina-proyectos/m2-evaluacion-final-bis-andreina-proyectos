@@ -6,6 +6,7 @@ const startButton = document.querySelector('.start-btn');
 const allInputRadios = document.querySelectorAll('.form__input-radio')
 ;
 let gameCardsList = document.querySelector('.game__cards-list');
+const headerTitle = document.querySelector('.header__title');
 
 if (localStorage.getItem('Favorite game value')) {
   let lsRadioValue = localStorage.getItem('Favorite game value');
@@ -118,6 +119,18 @@ function handleClickOnCard (event) {
   //si no hay ninguna .selected-card, significa que a la actual event current target, le añado la clase .selected-card para marcarla
   else {
     currentCard.classList.add('selected-card');
+  }
+
+  let arrFrontImg = document.querySelectorAll('.card__front-img');
+  let win = true;
+  for (let i=0; i<arrFrontImg.length; i++) {
+    if(arrFrontImg[i].classList.contains('hidden')){
+      win = false;
+    }
+  }
+
+  if (win) {
+    headerTitle.innerHTML = 'Has ganado!🥳🎉'
   }
 
 }
