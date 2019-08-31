@@ -82,31 +82,43 @@ function createElementCards (frontCardSrc, frontCardName) {
   cardNewElement.addEventListener('click', handleClickOnCard);
 }
 
-function handleClickOnCard () {
-  event.currentTarget.firstChild.classList.toggle('hidden');
-  event.currentTarget.children[1].classList.toggle('hidden');
+function handleClickOnCard (event) {
+  // doy vuelta a tarjeta
+  const currentCard = event.currentTarget;
+  currentCard.firstChild.classList.toggle('hidden');
+  currentCard.children[1].classList.toggle('hidden');
+  const previousSelectedCard = document.querySelector('.selected-card');
 
-  if (document.querySelector('.selected-card')) {
-    if (event.currentTarget.firstChild.alt === document.querySelector('.selected-card').alt) {
-      console.log('son lo mismo');
+   //si hay una carta con clase .selected-card, hago comprobación de si su alt es igual al de la tarjeta event current target
+  if (previousSelectedCard) {
 
+    if(currentCard.firstChild.alt === previousSelectedCard.firstChild.alt) {
+
+      console.log('acertaste');
     }
+
+    else {
+      // retraso el esconder cartas con hidden un segundo
+      let temp;
+      const hideCardDelayed = () => {
+        clearInterval(temp);
+
+        currentCard.firstChild.classList.toggle('hidden');
+        currentCard.children[1].classList.toggle('hidden');
+
+        previousSelectedCard.firstChild.classList.toggle('hidden');
+        previousSelectedCard.children[1].classList.toggle('hidden');
+      };
+      temp = setInterval(hideCardDelayed, 1000);
+      console.log('NO acertaste');
     }
-  else {
-    event.currentTarget.firstChild.classList.add('selected-card');
+
+    previousSelectedCard.classList.remove('selected-card');
   }
-
-
-  // const arrFrontCards =  gameCardsList.querySelectorAll('.card__front-img');
-
-  // for(let i=0; i<arrFrontCards.length; i++) {
-  //   if(arrFrontCards[i].classList('show-card')) {
-
-  //   }
-  // }
-
-
-  //deberia hacer un bucle recorriendo el array de tarjetas. si eventcurrenttarget.name ===
+  //si no hay ninguna .selected-card, significa que a la actual event current target, le añado la clase .selected-card para marcarla
+  else {
+    currentCard.classList.add('selected-card');
+  }
 
 }
 

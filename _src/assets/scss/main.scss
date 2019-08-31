@@ -69,7 +69,6 @@ width:60%;
   display: none;
 }
 
-
 .vert-move {
   -webkit-animation: mover 1s infinite  alternate;
   animation: mover 1s infinite  alternate;
@@ -87,6 +86,3 @@ width:60%;
   100% { transform: translateY(-10px); }
 }
 
-.selected-card {
-  border: 2px solid red;
-}
