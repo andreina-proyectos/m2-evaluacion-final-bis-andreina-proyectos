@@ -60,6 +60,7 @@ function createElementCards (frontCardSrc, frontCardName) {
   //create pokemon front img (first child)
   const imgFrontCard = document.createElement('img');
   imgFrontCard.classList.add('card__front-img');
+  imgFrontCard.classList.add('card-img');
   imgFrontCard.classList.add('hidden');
   imgFrontCard.src = frontCardSrc;
   imgFrontCard.alt = frontCardName;
@@ -67,6 +68,7 @@ function createElementCards (frontCardSrc, frontCardName) {
   //create pokemon back img (second child)
   const imgBackCard = document.createElement('img');
   imgBackCard.classList.add('card__back-img');
+  imgBackCard.classList.add('card-img');
   imgBackCard.src = 'https://via.placeholder.com/160x195/30d9c4/ffffff/?text=ADALAB';
   imgBackCard.alt = frontCardName;
 
