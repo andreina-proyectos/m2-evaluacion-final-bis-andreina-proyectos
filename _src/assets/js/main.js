@@ -4,13 +4,14 @@ console.log('>> Ready :)');
 //variables
 const startButton = document.querySelector('.start-btn');
 const allInputRadios = document.querySelectorAll('.form__input-radio');
-const gameCardsList = document.querySelector('.game__cards-list');
+let gameCardsList = document.querySelector('.game__cards-list');
 
 
 //functions
 
 
 function handleStartButton () {
+  gameCardsList.innerHTML = '';
   let radioSelectedValue;
   const endpoint = 'https://raw.githubusercontent.com/Adalab/cards-data/master/';
 
@@ -47,13 +48,14 @@ function createElementCards (frontCardSrc, frontCardName) {
   const cardNewElement = document.createElement('li');
   cardNewElement.classList.add('game__card-element');
 
-  //create pokemon front img
+  //create pokemon front img (first child)
   const imgFrontCard = document.createElement('img');
   imgFrontCard.classList.add('card__front-img');
+  imgFrontCard.classList.add('hidden');
   imgFrontCard.src = frontCardSrc;
   imgFrontCard.alt = frontCardName;
 
-  //create pokemon back img
+  //create pokemon back img (second child)
   const imgBackCard = document.createElement('img');
   imgBackCard.classList.add('card__back-img');
   imgBackCard.src = 'https://via.placeholder.com/160x195/30d9c4/ffffff/?text=ADALAB';
@@ -65,6 +67,14 @@ function createElementCards (frontCardSrc, frontCardName) {
 
   //integrate li on ul
   gameCardsList.appendChild(cardNewElement);
+
+  cardNewElement.addEventListener('click', handleClickOnCard);
+}
+
+function handleClickOnCard () {
+  event.currentTarget.firstChild.classList.toggle('hidden');
+  event.currentTarget.children[1].classList.toggle('hidden');
+
 }
 
 //listeners
